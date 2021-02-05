@@ -1,4 +1,4 @@
-## Fichiers de code qui accompagnent les capsules ES6+ distribuées sur MS Stream
+## Fichiers de code pour accompagner les capsules ES6+ du cours.
 Consultez l'équipe Teams du cours pour accéder aux capsules vidéos.
 Ces capsules vont traiter des notions de JavaScript moderne requises dans notre cours sur React/Firebase : 
 - Fonctions fléchées
