@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capsules ES6+ #1 : fonctions fléchées</title>
+</head>
+<body>
+  <h2>
+    Capsules ES6+ #1
+  </h2>
+  <h3>Ces exemples sont expliqués dans la <a href="https://web.microsoftstream.com/video/935fcb57-2812-4bd7-8beb-d226d30c6084" title="Capsule ES6+ #1" target="_blank">capsule vidéo</a> qu'ils accompagnent</h3>
+  <p>Consulter le code source et la console de votre navigateur.</p>
+  <ul id="listeFruits">
+    <li ref="Pamplemousse_et_pomélo">Pamplemousse</li>
+    <li ref="Grenade_(fruit)">Grenade</li>
+    <li ref="Orange_(fruit)">Orange</li>
+  </ul>
+  <script>
+    // Exemple 1 : fonction simple qui retourne le résultat d'un calcul
+    // Avec une déclaration de fonction
+    function nombreDeMersenne(n) {
+      return 2*n - 1;
+    }
+    // Avec la fonction fléchée équivalente (expression)
+    const nombreDeMersenne2 = n => 2*n -1;
+
+    // Test
+    console.log("Nombre de Mersenne avec n=3 (déclaration de fonction) : ", nombreDeMersenne(3));
+    console.log("Nombre de Mersenne avec n=3 (fonction fléchée) : ", nombreDeMersenne(3));
+    
+    /*****************************************************************************************************/
+
+    // Exemple 2 : trier un tableau numériquement avec la méthode Array.sort()
+    const tab = [34, 5, 76, 98765, 23, 1.4, 1000];
+    // Avec une expression de fonction donnée en "callback" (fonction de rappel)
+    /*
+    tab.sort(function(a,b) {
+      return (a-b);
+    });
+    */
+   // Avec la fonction fléchée équivalente
+    tab.sort((a,b) => a-b);
+    
+    // Test
+    console.log('Tableau de nombres triés en ordre croissant : ', tab);
+
+    /*****************************************************************************************************/
+
+    // Exemple 3 : gestionnaire d'événement et minuterie interne
+    
+    // Solution A : en utilisant "la fixation du this" (voir la variable 'ceci')
+    // document.querySelector("#listeFruits li").addEventListener('click', function() {
+    //   console.log("this à l'intérieur du gestionnaire d'événements : ", this);
+    //   let ceci = this;
+    //   setTimeout(function() {
+    //     console.log("this à l'intérieur de la minuterie : ", this);
+    //     console.log("Ceci : ", ceci);
+    //     window.open('https://fr.wikipedia.org/wiki/' + ceci.getAttribute('ref'), '_blank');
+    //   }, 1000);
+    // });
+  
+    // Solution B : avec une fonction fléchée pour le callback de la minuterie
+    document.querySelector("#listeFruits li").addEventListener('click', function() {
+      setTimeout(() => window.open('https://fr.wikipedia.org/wiki/' + this.getAttribute('ref'), '_blank'), 1000);
+    });
+  </script>
+</body>
+</html>
