@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capsule ES6+ #2 : méthodes filter(), map(), reduce()</title>
+</head>
+<body>
+  <h2>
+    Capsule ES6+ #2
+  </h2>
+  <h4>Les exemples dans ce fichier sont expliqués dans cette <a href="https://web.microsoftstream.com/video/5bc31088-2f78-4246-bcd5-b5bc351a10e5" title="Capsule ES6+ #2" target="_blank">capsule vidéo</a>.</h4>
+  <h3>Références</h3>
+  <dl>
+    <dt>MDN : Intro, exemples, et documentation complète (aussi disponible en français)</dt>
+    <dd>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank">filter()</a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank">map()</a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce" target="_blank">reduce()</a>
+    </dd>
+    <dt>FreeCodeCamp : Résumé un peu simpliste, avec une vidéo</dt>
+    <dd>
+      <a href="https://www.freecodecamp.org/news/javascript-map-reduce-and-filter-explained-with-examples/" target="_blank">JavaScript Map, Reduce, and Filter - JS Array Functions Explained with Code Examples</a>
+    </dd>
+    <dt>GitConnected : Un autre résumé simple, mais avec un exemple plus réaliste</dt>
+    <dd>
+      <a href="https://levelup.gitconnected.com/sneak-peak-of-map-filter-and-reduce-in-javascript-79d38181a48" target="_blank">A Quick Overview of map(), filter(), and reduce() in JavaScript</a>
+    </dd>
+  </dl>
+
+  <hr>
+  <p>
+    (<i>Consulter le code source et la console de votre navigateur.</i>)
+  </p>
+  <hr>
+
+  <script>
+    // Tableau contenant les notes des étudiants 
+    const tabNotes = [
+      {
+        nom: "Sylvie",
+        note: 35,
+        ponderation: 50
+      },
+      {
+        nom: "Ahmed",
+        note: 27,
+        ponderation: 35
+      },
+      {
+        nom: "Alain",
+        note: 30,
+        ponderation: 35
+      },
+      {
+        nom: "Dimitri",
+        note: 28,
+        ponderation: 50
+      },
+      {
+        nom: "Alice",
+        note: 20,
+        ponderation: 50
+      }
+    ]
+
+    // Question 1 : retourner un tableau contenant uniquement les étudiants qui n'ont pas 60% ou plus en ce moment
+    console.log("Q1 (filter()) : ", tabNotes.filter( elt => elt.note/elt.ponderation < 0.6 ));
+    
+    // Question 2 : retourner un tableau contenant uniquement les notes des étudiants en pourcentage (arrondies)
+    console.log("Q2 (map()) : ", tabNotes.map( elt => Math.round( (elt.note/elt.ponderation) * 100 )));
+
+    // Question 3 : retourner un tableau contenant la même info mais en ajoutant la note en pourcentage (arrondie)
+    console.log("Q3 (map() avec ...) : ", tabNotes.map( elt => ({...elt, pourcent: Math.round( (elt.note/elt.ponderation) * 100 )})));
+    console.log("Q3 (map() avec assign()) : ", tabNotes.map( elt => Object.assign({}, elt, {pourcentage: Math.round( (elt.note/elt.ponderation) * 100 )})));
+
+    // Question 4 : retourner la moyenne de la classe actuelle
+    console.log("Q4 (reduce()) : ", Math.round(tabNotes.reduce((valInit, valCourante) => (valCourante.note/valCourante.ponderation)*100 + valInit, 0)/tabNotes.length));
+    console.log("Q4 (map() suivie de reduce()) : ", Math.round(tabNotes.map( 
+                                                                    elt => Math.round( (elt.note/elt.ponderation) * 100 )).reduce( 
+                                                                                            (initial, courant) => courant + initial , 0) / tabNotes.length));
+  </script>
+</body>
+</html>
