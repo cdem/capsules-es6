@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capsule ES6+ #3 : types "par valeur" vs type "par référence"</title>
+</head>
+<body>
+  <h2>
+    Capsule ES6+ #3 : types "par valeur" vs type "par référence"
+  </h2>
+  <h3>... et les conséquences ;-)</h3>
+  <h4>Les exemples dans ce fichier sont expliqués dans cette <a href="https://web.microsoftstream.com/video/5bc31088-2f78-4246-bcd5-b5bc351a10e5" title="Capsule ES6+ #2" target="_blank">capsule vidéo</a>.</h4>
+  <h3>Références</h3>
+  <dl>
+    
+  </dl>
+
+  <hr>
+  <p>
+    (<i>Consulter le code source et la console de votre navigateur.</i>)
+  </p>
+  <hr>
+
+  <script>
+    // Tableau contenant les notes des étudiants 
+    const tabNotes = [
+      {
+        nom: "Sylvie",
+        note: 35,
+        ponderation: 50
+      },
+      {
+        nom: "Ahmed",
+        note: 27,
+        ponderation: 35
+      },
+      {
+        nom: "Alain",
+        note: 30,
+        ponderation: 35
+      },
+      {
+        nom: "Dimitri",
+        note: 28,
+        ponderation: 50
+      },
+      {
+        nom: "Alice",
+        note: 20,
+        ponderation: 50
+      }
+    ];
+    let tab2 = tabNotes;
+    tabNotes[2].note = 10;
+    console.log(tab2[2].note);
+    console.log("Est-ce que les deux tableaux sont égaux ? ", tab2 === tabNotes);
+  </script>
+</body>
+</html>
