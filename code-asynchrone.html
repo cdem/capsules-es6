@@ -29,23 +29,39 @@
     /**************************************************************/
     // Méthode 1 : utilisation d'un callback (ou fonction de rappel)
     function testAsyncAvecXHR() {
-      
+      let xhr = new XMLHttpRequest();
+      xhr.open('get', adresseApi);
+      xhr.responseType = "json";
+      xhr.onload = gererLaReponse;
+      xhr.send();
+
+      function gererLaReponse() {
+        console.log("Méthode 1 | Callback | Objet JSON retourné par la requête : ", xhr.response);
+      }
     }
-    testAsyncAvecCallback();
+     testAsyncAvecCallback();
 
     /************************************************************************/
     // Méthode 2 : utilisation des 'promesses' (ou objet 'Promise' en anglais)
     function testAsyncAvecPromise() {
-      
+      fetch(adresseApi).then(
+        reponse => reponse.json()
+      ).then(
+        reponseJson => console.log("Méthode 2 | Promise | Objet JSON retourné par la requête : ", reponseJson)
+      ).catch(
+        erreur => console.log(erreur)
+      );
     }
-    testAsyncAvecPromise();
+    // testAsyncAvecPromise();
 
     /**************************************************/
     // Méthode 3 : utilisation de la syntaxe async/await
     async function testAsyncAvecAsyncAwait() {
-      
+      const reponse = await fetch(adresseApi);
+      const reponseJson = await reponse.json();
+      console.log("Méthode 3 | async/await | Objet JSON retourné par la requête : ", reponseJson);
     }
-    testAsyncAvecAsyncAwait();
+    //testAsyncAvecAsyncAwait();
 
   </script>
 </body>
