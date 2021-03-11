@@ -13,7 +13,10 @@
   <h4>Les exemples dans ce fichier sont expliqués dans cette <a href="https://web.microsoftstream.com/video/5bc31088-2f78-4246-bcd5-b5bc351a10e5" title="Capsule ES6+ #2" target="_blank">capsule vidéo</a>.</h4>
   <h3>Références</h3>
   <dl>
-    
+    <dt>Guide <code>async</code>/<code>await</code> sur MDN</dt>
+    <dd>https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await</dd>
+    <dt>Comparaison des trois manières de produire du code asynchrone en JavaScript</dt>
+    <dd>https://codingthesmartway.com/async-programming-with-javascript-callbacks-promises-and-async-await/</dd>
   </dl>
 
   <hr>
@@ -28,18 +31,17 @@
 
     /**************************************************************/
     // Méthode 1 : utilisation d'un callback (ou fonction de rappel)
-    function testAsyncAvecXHR() {
+    function testAsyncAvecCallback() {
       let xhr = new XMLHttpRequest();
-      xhr.open('get', adresseApi);
-      xhr.responseType = "json";
-      xhr.onload = gererLaReponse;
+      xhr.open("get", adresseApi);
+      xhr.responseType = 'json';
+      xhr.onload = gererLaReponse; 
       xhr.send();
-
       function gererLaReponse() {
-        console.log("Méthode 1 | Callback | Objet JSON retourné par la requête : ", xhr.response);
+        console.log("Méthode 1 - Avec une fonction de rappel : ", xhr.response);
       }
     }
-     testAsyncAvecCallback();
+    // testAsyncAvecCallback();
 
     /************************************************************************/
     // Méthode 2 : utilisation des 'promesses' (ou objet 'Promise' en anglais)
@@ -47,10 +49,10 @@
       fetch(adresseApi).then(
         reponse => reponse.json()
       ).then(
-        reponseJson => console.log("Méthode 2 | Promise | Objet JSON retourné par la requête : ", reponseJson)
+        reponseJSON => console.log("Méthode 2 - Avec une 'promesse' : ", reponseJSON)
       ).catch(
         erreur => console.log(erreur)
-      );
+      )
     }
     // testAsyncAvecPromise();
 
@@ -58,10 +60,10 @@
     // Méthode 3 : utilisation de la syntaxe async/await
     async function testAsyncAvecAsyncAwait() {
       const reponse = await fetch(adresseApi);
-      const reponseJson = await reponse.json();
-      console.log("Méthode 3 | async/await | Objet JSON retourné par la requête : ", reponseJson);
+      const reponseJSON = await reponse.json();
+      console.log("Méthode 3 - Avec 'async/await' : ", reponseJSON);
     }
-    //testAsyncAvecAsyncAwait();
+    testAsyncAvecAsyncAwait();
 
   </script>
 </body>

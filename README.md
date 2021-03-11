@@ -6,4 +6,4 @@ Ces capsules vont traiter des notions de JavaScript moderne requises dans notre 
 - Destructuration de tableaux et d'objets
 - Gabarit de chaînes de caractères
 - Méthodes "déclarative" de manipulation des tableaux (filter(), map(), reduce(), etc.)
-- Etc.
+- Utilisation du code asynchrone (*callback*, *promise*, *async/await*)
